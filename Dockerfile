@@ -1,9 +1,12 @@
-#stage 1
-FROM node:latest as node
+FROM node:13-alpine as build
 WORKDIR /app
-COPY . .
+COPY package*.json /app/
+RUN npm install -g @angular/cli
+RUN npm install -g ionic
 RUN npm install
-RUN npm run build --prod
-#stage 2
+COPY ./ /app/
+RUN ionic build --prod
+RUN cd /myApp/www
 FROM nginx:alpine
-COPY --from=node /app/dist/demo-app /usr/share/nginx/html
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build /app/www/ /usr/share/nginx/html/
