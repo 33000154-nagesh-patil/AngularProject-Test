@@ -1,4 +1,6 @@
-FROM node:16-alpine as build
+FROM ubuntu
+RUN sudo su
+RUN apt install nodejs
 WORKDIR /app
 COPY package*.json /app/
 RUN npm install -g ionic
