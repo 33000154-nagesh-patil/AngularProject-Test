@@ -1,6 +1,5 @@
 FROM ubuntu
-RUN sudo su
-RUN apt install nodejs
+RUN sudo apt install nodejs
 WORKDIR /app
 COPY package*.json /app/
 RUN npm install -g ionic
