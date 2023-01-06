@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### STAGE 1:BUILD ###
 # Defining a node image to be used as giving it an alias of "build"
 # Which version of Node image to use depends on project dependencies
@@ -12,6 +13,13 @@ WORKDIR /dist/src/app
 RUN npm cache clean --force
 # Copy files from local machine to virtual directory in docker image
 COPY . .
+=======
+FROM ubuntu
+RUN apt-get install nodejs
+WORKDIR /app
+COPY package*.json /app/
+RUN npm install -g ionic
+>>>>>>> 5571d1d78bedbc813285e5fee2a536afcfe188e1
 RUN npm install
 RUN npm install -g @ionic/cli
 RUN ionic build --prod
